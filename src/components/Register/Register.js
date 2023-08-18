@@ -1,27 +1,9 @@
-import { useNavigate } from 'react-router-dom';
- 
-import * as authService from '../../services/authService';
-
-const Login = ({
-    onLogin
-}) => {
-    const navigate = useNavigate();
-    
-    const onLoginHandler = (e) => {
-        e.preventDefault();
-        let formData = new FormData(e.currentTarget);
-        let email = formData.get('email');
-
-        authService.login(email);
-        onLogin(email)
-        navigate('/');
-    }
-    
+const Register = () => {
     return (
-        <section id="login-page" className="login">
-            <form id="login-form" onSubmit={onLoginHandler} method="POST">
+        <section id="register-page" className="register">
+            <form id="register-form" >
                 <fieldset>
-                    <legend>Login Form</legend>
+                    <legend>Register Form</legend>
                     <p className="field">
                         <label htmlFor="email">Email</label>
                         <span className="input">
@@ -34,10 +16,17 @@ const Login = ({
                             <input type="password" name="password" id="password" placeholder="Password" />
                         </span>
                     </p>
-                    <input className="button submit" type="submit" value="Login" />
+                    <p className="field">
+                        <label htmlFor="repeat-pass">Repeat Password</label>
+                        <span className="input">
+                            <input type="password" name="confirm-pass" id="repeat-pass" placeholder="Repeat Password" />
+                        </span>
+                    </p>
+                    <input className="button submit" type="submit" value="Register" />
                 </fieldset>
             </form>
         </section>
     );
 }
-export default Login;
+
+export default Register;
